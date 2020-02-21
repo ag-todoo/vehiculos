@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
- from odoo import models, fields
+from odoo import models, fields
 
- class propietarios(models.Model):
+class propietarios(models.Model):
      _name = 'propietarios.usuarios'
      _description = 'propietarios de los vehiculos'
 
