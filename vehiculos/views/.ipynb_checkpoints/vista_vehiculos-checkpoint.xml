@@ -1,0 +1,71 @@
+<odoo>
+  <data>
+      
+
+
+      
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="record.vehiculos.list">
+      <field name="name">vehiculos list</field>
+      <field name="model">propietarios.usuarios</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombrepropietario"/>
+          <field name="cedula"/>
+          <field name="vehiculo"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="vista_propietarios">
+      <field name="name">fihcha vehiculos</field>
+      <field name="res_model">propietarios.usuarios</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+      
+            <menuitem name="vehiculos" id="vehiculos_main"/>
+    <menuitem id="usuarios_clase"
+                  parent="vehivulos_main"
+                  action="vista_propietarios"
+                  name="vehiculos"/>
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="vehiculos.action_server">
+      <field name="name">vehiculos server</field>
+      <field name="model_id" ref="model_vehiculos_vehiculos"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="vehiculos" id="vehiculos.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="vehiculos.menu_1" parent="vehiculos.menu_root"/>
+    <menuitem name="Menu 2" id="vehiculos.menu_2" parent="vehiculos.menu_root"/>
+-->
+    <!-- actions -->
+
+    <menuitem name="List" id="vehiculos.menu_1_list" parent="vehiculos.menu_1"
+              action="vehiculos.action_window"/>
+    <menuitem name="Server to list" id="vehiculos" parent="vehiculos.menu_2"
+              action="vehiculos.action_server"/>
+
+      
+
+  </data>
+</odoo>
